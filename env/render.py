@@ -40,7 +40,9 @@ class Renderer:
         self.screen = pygame.display.set_mode((self.width, self.height + 30))
         pygame.display.set_caption(title)
         self.clock  = pygame.time.Clock()
-        self.font   = pygame.font.SysFont("Consolas", 18)
+        # 使用宋体显示中文信息
+        from ui.ui_utils import get_chinese_font
+        self.font   = get_chinese_font(16)
 
     # ------------------------------------------------------------------
     # 公开接口
@@ -106,12 +108,12 @@ class Renderer:
         pygame.draw.circle(self.screen, self.FOOD, (cx, cy), r)
 
     def _draw_info(self, episode: int, total_reward: float):
-        """在底部状态栏显示游戏信息"""
+        """在底部状态栏显示游戏信息（宋体）"""
         info = (
-            f"Episode: {episode:4d}  "
-            f"Score: {self.game.score:3d}  "
-            f"Length: {self.game.snake_length:3d}  "
-            f"Reward: {total_reward:6.1f}"
+            f"第 {episode} 局  "
+            f"得分：{self.game.score}  "
+            f"长度：{self.game.snake_length}  "
+            f"奖励：{total_reward:.1f}"
         )
         surf = self.font.render(info, True, self.TEXT)
         self.screen.blit(surf, (6, self.height + 6))

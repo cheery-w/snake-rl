@@ -14,11 +14,11 @@ venv/
 .env
 .venv
 
-# PyTorch checkpoints (可选：如果不想上传模型权重，取消注释)
-# checkpoints/
+# PyTorch checkpoints：只保留 best.pt，其余周期性存档不上传
+checkpoints/ep_*.pt
 
-# Logs & plots (训练产物，可选)
-# logs/
+# Logs & plots（训练产物，不上传）
+logs/
 
 # IDE
 .vscode/
